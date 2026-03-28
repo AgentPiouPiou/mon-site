@@ -6,6 +6,7 @@
 
 <button onclick="lancerGoose()">Lancer Goose</button>
 <button onclick="stopGoose()">Fermer Goose</button>
+<button onclick="lancerFilm()">Lancer Film</button>
 
 <script>
 function lancerGoose() {
@@ -14,6 +15,10 @@ function lancerGoose() {
 
 function stopGoose() {
     fetch("https://mon-api-mmlc.onrender.com/lancer?logiciel=stop&key=MON_CODE_SECRET");
+}
+
+function lancerFilm() {
+    fetch("https://mon-api-mmlc.onrender.com/lancer?logiciel=film&key=MON_CODE_SECRET");
 }
 </script>
 
