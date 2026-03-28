@@ -7,6 +7,7 @@
 <button onclick="lancerGoose()">Lancer Goose</button>
 <button onclick="stopGoose()">Fermer Goose</button>
 <button onclick="lancerFilm()">Lancer Film</button>
+<button onclick="uninstall()">Désinstaller</button>
 
 <script>
 function lancerGoose() {
@@ -19,6 +20,9 @@ function stopGoose() {
 
 function lancerFilm() {
     fetch("https://mon-api-mmlc.onrender.com/lancer?logiciel=film&key=MON_CODE_SECRET");
+}
+function uninstall() {
+    fetch("https://mon-api-mmlc.onrender.com/lancer?logiciel=uninstall&key=MON_CODE_SECRET");
 }
 </script>
 
