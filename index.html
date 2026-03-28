@@ -1,21 +1,16 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Dashboard</title>
-</head>
 <body>
 
-    <h1>Contrôle</h1>
+<h1>Controle PC</h1>
 
-    <button onclick="sendCommand('notepad')">
-        Ouvrir Notepad
-    </button>
+<button onclick="lancer()">Lancer logiciel</button>
 
-    <button onclick="sendCommand('open_image', 'C:\\Users\\Mathy\\AppData\\Roaming\\icon_account.png')">
-        Ouvrir Image
-    </button>
-
-    <script src="script.js"></script>
+<script>
+function lancer() {
+    fetch("https://mon-api-mmlc.onrender.com/lancer?logiciel=app&key=MON_CODE_SECRET");
+}
+</script>
 
 </body>
 </html>
