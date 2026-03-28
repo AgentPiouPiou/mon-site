@@ -1,12 +1,21 @@
-<!DOCTYPE html> 
-<html> 
-<body> 
-<h1>Controle PC</h1> 
-<button onclick="lancer()">Lancer logiciel</button> 
-<script> 
-function lancer() { 
-fetch("https://mon-api-mmlc.onrender.com/lancer?logiciel=app&key=MON_CODE_SECRET");
-} 
-</script> 
-</body> 
-</html> 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contrôle</title>
+</head>
+<body>
+
+    <h1>Dashboard</h1>
+
+    <button onclick="sendCommand('run', 'notepad')">
+        Ouvrir Notepad
+    </button>
+
+    <button onclick="sendCommand('open', 'C:\\Users\\Mathy\\Desktop')">
+        Ouvrir Bureau
+    </button>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
