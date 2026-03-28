@@ -1,0 +1,12 @@
+<!DOCTYPE html> 
+<html> 
+<body> 
+<h1>Controle PC</h1> 
+<button onclick="lancer()">Lancer logiciel</button> 
+<script> 
+function lancer() { 
+fetch("https://mon-api-mmlc.onrender.com/lancer?logiciel=app^&key=MON_CODE_SECRET"); 
+} 
+</script> 
+</body> 
+</html> 
