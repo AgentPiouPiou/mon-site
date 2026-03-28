@@ -1,4 +1,4 @@
-function sendCommand(action, value) {
+function sendCommand(action, value = null) {
     fetch("https://mon-api-mmlc.onrender.com/set-command", {
         method: "POST",
         headers: {
