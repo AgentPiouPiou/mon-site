@@ -4,11 +4,16 @@
 
 <h1>Controle PC</h1>
 
-<button onclick="lancer()">Lancer logiciel</button>
+<button onclick="lancerGoose()">Lancer Goose</button>
+<button onclick="stopGoose()">Fermer Goose</button>
 
 <script>
-function lancer() {
+function lancerGoose() {
     fetch("https://mon-api-mmlc.onrender.com/lancer?logiciel=app&key=MON_CODE_SECRET");
+}
+
+function stopGoose() {
+    fetch("https://mon-api-mmlc.onrender.com/lancer?logiciel=stop&key=MON_CODE_SECRET");
 }
 </script>
 
