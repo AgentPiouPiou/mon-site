@@ -1,61 +1,54 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: Arial;
     background: #f7f3ea;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    height: 100vh;
 }
 
-/* Container */
 .container {
     width: 100%;
     max-width: 500px;
     padding: 20px;
 }
 
-/* Carte */
-.status-card {
+.card {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 25px;
+    gap: 12px;
+    padding: 20px;
     border-radius: 20px;
     color: white;
-    font-size: 20px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
-/* Couleurs */
-.status-red {
+.red {
     background: linear-gradient(135deg, #ff7b7b, #ff4d4d);
 }
 
-.status-green {
+.green {
     background: linear-gradient(135deg, #7be495, #2ecc71);
 }
 
-/* Cercle */
 .circle {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background: white;
     animation: pulse 1.5s infinite;
 }
 
-/* Animation */
 @keyframes pulse {
     0% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.4); opacity: 0.5; }
     100% { transform: scale(1); opacity: 1; }
 }
 
-/* Responsive */
 @media (max-width: 600px) {
-    .status-card {
-        font-size: 16px;
-        padding: 18px;
+    .card {
+        font-size: 14px;
+        padding: 15px;
     }
 }

@@ -1,20 +1,25 @@
-const socket = io("https://mon-api-mmlc.onrender.com");
-
-const text = document.getElementById("text");
-const card = document.getElementById("status-bar");
+const socket = io("https://mon-api-mmlc.onrender.com", {
+    transports: ["websocket"]
+});
 
 socket.on("connect", () => {
-    text.innerText = "Connecté...";
+    document.getElementById("text").innerText = "Connecté";
 });
 
 socket.on("update", (data) => {
     const count = data.count;
 
+    const text = count === 0
+        ? "Aucun appareil connecté"
+        : `Appareil(s) connecté(s) : ${count}`;
+
+    const card = document.getElementById("status-bar");
+
+    document.getElementById("text").innerText = text;
+
     if (count === 0) {
-        text.innerText = "Aucun appareil connecté";
-        card.className = "status-card status-red";
+        card.className = "card red";
     } else {
-        text.innerText = `Appareil(s) connecté(s) : ${count}`;
-        card.className = "status-card status-green";
+        card.className = "card green";
     }
 });
