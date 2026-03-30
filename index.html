@@ -1,23 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Status Appareils</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
 <body>
 
-<h1>PC connectés</h1>
+<div id="status" class="card offline">
+    <div class="dot red"></div>
+    <span>Aucun appareil en ligne</span>
+</div>
 
-<button onclick="refresh()">Actualiser</button>
-
-<pre id="result"></pre>
-
-<script>
-function refresh() {
-    fetch("https://mon-api-mmlc.onrender.com/clients")
-    .then(res => res.json())
-    .then(data => {
-        document.getElementById("result").innerText =
-            JSON.stringify(data, null, 2);
-    });
-}
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
