@@ -1,38 +1,43 @@
 body {
     margin: 0;
-    font-family: Arial;
-    background: #f7f3ea;
+    font-family: Arial, sans-serif;
+    background: #f7f3ea; /* crème */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
+/* conteneur centré */
 .container {
     width: 100%;
     max-width: 500px;
     padding: 20px;
 }
 
+/* carte */
 .card {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 25px;
+    padding: 20px;
     border-radius: 20px;
     color: white;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     transition: 0.3s;
 }
 
+/* 🔴 Aucun appareil */
 .red {
-    background: linear-gradient(135deg, #ff7b7b, #ff4d4d);
+    background: #ff4d4d;
 }
 
+/* 🟢 Appareils connectés */
 .green {
-    background: linear-gradient(135deg, #b2f2bb, #69db7c); /* vert pastel */
+    background: #69db7c;
 }
 
+/* rond animé */
 .circle {
     width: 12px;
     height: 12px;
@@ -41,8 +46,17 @@ body {
     animation: pulse 1.5s infinite;
 }
 
+/* animation pulsation */
 @keyframes pulse {
     0% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.4); opacity: 0.5; }
     100% { transform: scale(1); opacity: 1; }
+}
+
+/* responsive mobile */
+@media (max-width: 600px) {
+    .card {
+        padding: 15px;
+        font-size: 14px;
+    }
 }
