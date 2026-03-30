@@ -5,14 +5,12 @@ const socket = io("https://mon-api-mmlc.onrender.com", {
 const text = document.getElementById("text");
 const card = document.getElementById("card");
 
-socket.on("update", (data) => {
-    const count = data.count;
-
-    if (count === 0) {
+socket.on("status", (data) => {
+    if (data.connected) {
+        text.innerText = "Appareil connecté";
+        card.className = "card green";
+    } else {
         text.innerText = "Aucun appareil connecté";
         card.className = "card red";
-    } else {
-        text.innerText = `${count} Appareils sont Connectés`;
-        card.className = "card green";
     }
 });

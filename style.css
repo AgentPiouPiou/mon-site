@@ -1,17 +1,11 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: Arial;
     background: #f7f3ea;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
-
-.container {
-    width: 100%;
-    max-width: 500px;
-    padding: 20px;
 }
 
 .card {
@@ -25,12 +19,10 @@ body {
     transition: 0.3s;
 }
 
-/* rouge */
 .red {
     background: #ff4d4d;
 }
 
-/* vert */
 .green {
     background: #69db7c;
 }
@@ -47,11 +39,4 @@ body {
     0% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.4); opacity: 0.5; }
     100% { transform: scale(1); opacity: 1; }
-}
-
-@media (max-width: 600px) {
-    .card {
-        padding: 15px;
-        font-size: 14px;
-    }
 }
