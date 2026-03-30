@@ -1,29 +1,27 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Status Appareils</title>
-
-<link rel="stylesheet" href="style.css">
+    <title>Status</title>
 </head>
-
 <body>
+    <h1 id="status">Chargement...</h1>
 
-<div class="container">
-    
-    <div id="status" class="card offline">
-        <div class="dot red"></div>
-        <span>Aucun appareil connecté</span>
-    </div>
+    <script>
+        async function updateStatus() {
+            const res = await fetch("https://mon-api-mmlc.onrender.com/status");
+            const data = await res.json();
 
-    <!-- 🔻 DEBUG API -->
-    <div id="debug" class="debug">
-        API : ...
-    </div>
+            const users = data.users;
 
-</div>
+            const text = users === 0
+                ? "Aucun appareil connecté"
+                : `Appareil(s) connecté(s) : ${users}`;
 
-<script src="script.js"></script>
+            document.getElementById("status").innerText = text;
+        }
+
+        setInterval(updateStatus, 2000);
+        updateStatus();
+    </script>
 </body>
 </html>
