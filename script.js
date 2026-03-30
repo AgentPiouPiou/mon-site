@@ -5,7 +5,7 @@ const socket = io("https://mon-api-mmlc.onrender.com", {
 const text = document.getElementById("text");
 const card = document.getElementById("card");
 
-socket.on("status", (data) => {
+socket.on("update", (data) => {
     if (data.connected) {
         text.innerText = "Appareil connecté";
         card.className = "card green";
