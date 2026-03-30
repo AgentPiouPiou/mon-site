@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: white;
+}
+
+/* Barre */
+#status-bar {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    font-size: 18px;
+}
+
+/* Rouge / Vert */
+.status-red {
+    background: #8b0000;
+}
+
+.status-green {
+    background: #006400;
+}
+
+/* Cercle */
+.circle {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: red;
+    animation: pulse 1.5s infinite;
+}
+
+/* Animation pulsation */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    #status-bar {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .circle {
+        width: 10px;
+        height: 10px;
+    }
+}
