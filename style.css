@@ -30,7 +30,7 @@ body {
 }
 
 .green {
-    background: linear-gradient(135deg, #7be495, #2ecc71);
+    background: linear-gradient(135deg, #b2f2bb, #69db7c); /* vert pastel */
 }
 
 .circle {
