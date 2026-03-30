@@ -1,33 +1,20 @@
-const API_URL = "https://mon-api-mmlc.onrender.com";
+const socket = io("https://mon-api-mmlc.onrender.com");
 
-async function updateStatus() {
-    try {
-        const res = await fetch(`${API_URL}/status`);
-        const data = await res.json();
+const text = document.getElementById("text");
+const card = document.getElementById("status-bar");
 
-        const count = data.count;
+socket.on("connect", () => {
+    text.innerText = "Connecté...";
+});
 
-        const text = count === 0
-            ? "Aucun appareil connecté"
-            : `Appareil(s) connecté(s) : ${count}`;
+socket.on("update", (data) => {
+    const count = data.count;
 
-        const bar = document.getElementById("status-bar");
-        const circle = document.querySelector(".circle");
-
-        document.getElementById("text").innerText = text;
-
-        if (count === 0) {
-            bar.className = "status-red";
-            circle.style.background = "red";
-        } else {
-            bar.className = "status-green";
-            circle.style.background = "green";
-        }
-
-    } catch (e) {
-        console.error(e);
+    if (count === 0) {
+        text.innerText = "Aucun appareil connecté";
+        card.className = "status-card status-red";
+    } else {
+        text.innerText = `Appareil(s) connecté(s) : ${count}`;
+        card.className = "status-card status-green";
     }
-}
-
-setInterval(updateStatus, 2000);
-updateStatus();
+});
