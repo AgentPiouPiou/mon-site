@@ -8,6 +8,13 @@ body {
     background: #f5f5f5;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
 .card {
     padding: 30px 40px;
     border-radius: 20px;
@@ -44,6 +51,18 @@ body {
 
 .green {
     background: #28c76f;
+}
+
+/* 🔻 DEBUG BOX */
+.debug {
+    font-size: 14px;
+    color: #555;
+    background: #ffffff;
+    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    max-width: 300px;
+    word-break: break-all;
 }
 
 /* Responsive */

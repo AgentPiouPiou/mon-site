@@ -1,11 +1,8 @@
 const API = "https://mon-api-mmlc.onrender.com/count";
 
-function log(msg) {
-    const time = new Date().toLocaleTimeString();
-    console.log(`[${time}] ${msg}`);
-}
-
 async function updateStatus() {
+    const debugBox = document.getElementById("debug");
+
     try {
         const res = await fetch(API + "?t=" + Date.now(), {
             cache: "no-store"
@@ -13,7 +10,8 @@ async function updateStatus() {
 
         const data = await res.json();
 
-        log("Réponse API : " + JSON.stringify(data));
+        // 🔻 affichage brut API
+        debugBox.innerText = "API : " + JSON.stringify(data);
 
         const card = document.getElementById("status");
 
@@ -27,24 +25,22 @@ async function updateStatus() {
             card.className = "card offline";
             card.innerHTML = `
                 <div class="dot red"></div>
-                <span>Aucun appareil en ligne</span>
+                <span>Aucun appareil connecté</span>
             `;
         }
 
     } catch (err) {
-        log("Erreur : " + err);
+        debugBox.innerText = "Erreur API : " + err;
 
         const card = document.getElementById("status");
         card.className = "card offline";
         card.innerHTML = `
             <div class="dot red"></div>
-            <span>Erreur API</span>
+            <span>API inaccessible</span>
         `;
     }
 }
 
-// 🔁 mise à jour chaque seconde
+// 🔁 refresh toutes les secondes
 setInterval(updateStatus, 1000);
-
-// 🔁 premier appel immédiat
 updateStatus();
