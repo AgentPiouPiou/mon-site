@@ -1,21 +1,19 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f7f3ea; /* crème */
+    background: #f7f3ea;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-/* conteneur centré */
 .container {
     width: 100%;
     max-width: 500px;
     padding: 20px;
 }
 
-/* carte */
 .card {
     display: flex;
     align-items: center;
@@ -27,17 +25,16 @@ body {
     transition: 0.3s;
 }
 
-/* 🔴 Aucun appareil */
+/* rouge */
 .red {
     background: #ff4d4d;
 }
 
-/* 🟢 Appareils connectés */
+/* vert */
 .green {
     background: #69db7c;
 }
 
-/* rond animé */
 .circle {
     width: 12px;
     height: 12px;
@@ -46,14 +43,12 @@ body {
     animation: pulse 1.5s infinite;
 }
 
-/* animation pulsation */
 @keyframes pulse {
     0% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.4); opacity: 0.5; }
     100% { transform: scale(1); opacity: 1; }
 }
 
-/* responsive mobile */
 @media (max-width: 600px) {
     .card {
         padding: 15px;
