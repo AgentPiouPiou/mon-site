@@ -2,27 +2,20 @@
 <html>
 <body>
 
-<h1>Controle PC</h1>
+<h1>PC connectés</h1>
 
-<button onclick="lancerGoose()">Lancer Goose</button>
-<button onclick="stopGoose()">Fermer Goose</button>
-<button onclick="lancerFilm()">Lancer Film</button>
-<button onclick="uninstall()">Désinstaller</button>
+<button onclick="refresh()">Actualiser</button>
+
+<pre id="result"></pre>
 
 <script>
-function lancerGoose() {
-    fetch("https://mon-api-mmlc.onrender.com/lancer?logiciel=app&key=MON_CODE_SECRET");
-}
-
-function stopGoose() {
-    fetch("https://mon-api-mmlc.onrender.com/lancer?logiciel=stop&key=MON_CODE_SECRET");
-}
-
-function lancerFilm() {
-    fetch("https://mon-api-mmlc.onrender.com/lancer?logiciel=film&key=MON_CODE_SECRET");
-}
-function uninstall() {
-    fetch("https://mon-api-mmlc.onrender.com/lancer?logiciel=uninstall&key=MON_CODE_SECRET");
+function refresh() {
+    fetch("https://mon-api-mmlc.onrender.com/clients")
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("result").innerText =
+            JSON.stringify(data, null, 2);
+    });
 }
 </script>
 
