@@ -2,24 +2,21 @@ const socket = io("https://mon-api-mmlc.onrender.com", {
     transports: ["websocket"]
 });
 
+const text = document.getElementById("text");
+const card = document.getElementById("card");
+
 socket.on("connect", () => {
-    document.getElementById("text").innerText = "Connecté";
+    console.log("Connecté au serveur");
 });
 
 socket.on("update", (data) => {
     const count = data.count;
 
-    const text = count === 0
-        ? "Aucun appareil connecté"
-        : `Appareil(s) connecté(s) : ${count}`;
-
-    const card = document.getElementById("status-bar");
-
-    document.getElementById("text").innerText = text;
-
     if (count === 0) {
+        text.innerText = "Aucun appareil connecté";
         card.className = "card red";
     } else {
+        text.innerText = `Appareil(s) connecté(s) : ${count}`;
         card.className = "card green";
     }
 });
