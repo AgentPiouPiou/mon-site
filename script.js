@@ -1,21 +1,19 @@
 const API = "https://mon-api-mmlc.onrender.com/count";
 
-function log(message, type = "info") {
+function log(msg) {
     const time = new Date().toLocaleTimeString();
-
-    if (type === "error") {
-        console.error(`[${time}] ❌ ${message}`);
-    } else {
-        console.log(`[${time}] ✅ ${message}`);
-    }
+    console.log(`[${time}] ${msg}`);
 }
 
 async function updateStatus() {
     try {
-        const res = await fetch(API);
+        const res = await fetch(API + "?t=" + Date.now(), {
+            cache: "no-store"
+        });
+
         const data = await res.json();
 
-        log("API reçue : " + JSON.stringify(data));
+        log("Réponse API : " + JSON.stringify(data));
 
         const card = document.getElementById("status");
 
@@ -33,11 +31,20 @@ async function updateStatus() {
             `;
         }
 
-    } catch (e) {
-        log("Erreur API : " + e, "error");
+    } catch (err) {
+        log("Erreur : " + err);
+
+        const card = document.getElementById("status");
+        card.className = "card offline";
+        card.innerHTML = `
+            <div class="dot red"></div>
+            <span>Erreur API</span>
+        `;
     }
 }
 
-// 🔁 actualisation en direct
+// 🔁 mise à jour chaque seconde
 setInterval(updateStatus, 1000);
+
+// 🔁 premier appel immédiat
 updateStatus();
