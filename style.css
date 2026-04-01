@@ -3,11 +3,12 @@ body {
     font-family: Arial;
     background: #f7f3ea;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    height: 100vh;
+    padding: 20px;
 }
 
+/* status */
 .card {
     display: flex;
     align-items: center;
@@ -39,4 +40,47 @@ body {
     0% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.4); opacity: 0.5; }
     100% { transform: scale(1); opacity: 1; }
+}
+
+/* écrans */
+#screens-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.screen {
+    max-width: 45vw;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+/* bouton */
+#fullscreen-btn {
+    margin-top: 15px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    background: black;
+    color: white;
+    cursor: pointer;
+}
+
+/* mobile */
+@media (orientation: portrait) {
+    #screens-container {
+        flex-direction: column;
+    }
+
+    .screen {
+        max-width: 90vw;
+    }
+}
+
+@media (orientation: landscape) {
+    .screen {
+        max-width: 48vw;
+    }
 }

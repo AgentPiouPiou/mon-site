@@ -4,7 +4,11 @@ const socket = io("https://mon-api-mmlc.onrender.com", {
 
 const text = document.getElementById("text");
 const card = document.getElementById("card");
-const screen = document.getElementById("screen");
+const container = document.getElementById("screens-container");
+const fullscreenBtn = document.getElementById("fullscreen-btn");
+
+let lastUpdate = 0;
+const FPS_LIMIT = 10;
 
 socket.on("update", (data) => {
     if (data.connected) {
@@ -16,7 +20,26 @@ socket.on("update", (data) => {
     }
 });
 
-// réception écran
-socket.on("frame", (data) => {
-    screen.src = "data:image/jpeg;base64," + data;
+socket.on("frames", (frames) => {
+    const now = Date.now();
+
+    if (now - lastUpdate < 1000 / FPS_LIMIT) return;
+    lastUpdate = now;
+
+    container.innerHTML = "";
+
+    frames.forEach((frame) => {
+        const img = document.createElement("img");
+        img.src = "data:image/jpeg;base64," + frame;
+        img.className = "screen";
+        container.appendChild(img);
+    });
+});
+
+fullscreenBtn.addEventListener("click", () => {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+    } else {
+        document.exitFullscreen();
+    }
 });
