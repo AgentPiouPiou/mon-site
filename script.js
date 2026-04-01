@@ -22,7 +22,6 @@ socket.on("update", (data) => {
 
 socket.on("frames", (frames) => {
     const now = Date.now();
-
     if (now - lastUpdate < 1000 / FPS_LIMIT) return;
     lastUpdate = now;
 
@@ -32,6 +31,12 @@ socket.on("frames", (frames) => {
         const img = document.createElement("img");
         img.src = "data:image/jpeg;base64," + frame;
         img.className = "screen";
+
+        // clic = zoom
+        img.onclick = () => {
+            img.requestFullscreen();
+        };
+
         container.appendChild(img);
     });
 });
