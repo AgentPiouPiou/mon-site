@@ -4,6 +4,7 @@ const socket = io("https://mon-api-mmlc.onrender.com", {
 
 const text = document.getElementById("text");
 const card = document.getElementById("card");
+const screen = document.getElementById("screen");
 
 socket.on("update", (data) => {
     if (data.connected) {
@@ -13,4 +14,9 @@ socket.on("update", (data) => {
         text.innerText = "Aucun appareil connecté";
         card.className = "card red";
     }
+});
+
+// réception écran
+socket.on("frame", (data) => {
+    screen.src = "data:image/jpeg;base64," + data;
 });
