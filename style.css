@@ -1,87 +1,36 @@
-body {
-    margin: 0;
-    font-family: Arial;
-    background: #f7f3ea;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
+#controls {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    pointer-events: none;
 }
 
-/* status */
-.card {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 20px;
-    border-radius: 20px;
-    color: white;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    transition: 0.3s;
-}
-
-.red {
-    background: #ff4d4d;
-}
-
-.green {
-    background: #69db7c;
-}
-
-.circle {
-    width: 12px;
-    height: 12px;
+#joystick {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    background: white;
-    animation: pulse 1.5s infinite;
+    background: rgba(0,0,0,0.3);
+    pointer-events: auto;
 }
 
-@keyframes pulse {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.4); opacity: 0.5; }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-/* écrans */
-#screens-container {
+#buttons {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
     display: flex;
     gap: 10px;
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
+    pointer-events: auto;
 }
 
-.screen {
-    max-width: 45vw;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-    cursor: pointer;
-}
-
-/* bouton */
-#fullscreen-btn {
-    margin-top: 15px;
-    padding: 10px 15px;
+#buttons button {
+    padding: 15px;
+    border-radius: 50%;
     border: none;
-    border-radius: 10px;
     background: black;
     color: white;
-    cursor: pointer;
-}
-
-/* mobile */
-@media (orientation: portrait) {
-    #screens-container {
-        flex-direction: column;
-    }
-
-    .screen {
-        max-width: 95vw;
-    }
-}
-
-@media (orientation: landscape) {
-    .screen {
-        max-width: 48vw;
-    }
+    font-size: 12px;
 }

@@ -2,49 +2,61 @@ const socket = io("https://mon-api-mmlc.onrender.com", {
     transports: ["websocket"]
 });
 
-const text = document.getElementById("text");
-const card = document.getElementById("card");
 const container = document.getElementById("screens-container");
 const fullscreenBtn = document.getElementById("fullscreen-btn");
 
-let lastUpdate = 0;
-const FPS_LIMIT = 10;
-
-socket.on("update", (data) => {
-    if (data.connected) {
-        text.innerText = "Appareil connecté";
-        card.className = "card green";
-    } else {
-        text.innerText = "Aucun appareil connecté";
-        card.className = "card red";
-    }
-});
+let imgs = [];
 
 socket.on("frames", (frames) => {
-    const now = Date.now();
-    if (now - lastUpdate < 1000 / FPS_LIMIT) return;
-    lastUpdate = now;
 
-    container.innerHTML = "";
+    // créer images une seule fois
+    if (imgs.length === 0) {
+        container.innerHTML = "";
 
-    frames.forEach((frame) => {
-        const img = document.createElement("img");
-        img.src = "data:image/jpeg;base64," + frame;
-        img.className = "screen";
+        frames.forEach(() => {
+            const img = document.createElement("img");
+            img.className = "screen";
+            container.appendChild(img);
+            imgs.push(img);
+        });
+    }
 
-        // clic = zoom
-        img.onclick = () => {
-            img.requestFullscreen();
-        };
-
-        container.appendChild(img);
+    // update sans recréer DOM (ULTRA IMPORTANT)
+    frames.forEach((frame, i) => {
+        imgs[i].src = "data:image/webp;base64," + frame;
     });
 });
 
-fullscreenBtn.addEventListener("click", () => {
+
+// 📱 plein écran + rotation
+fullscreenBtn.addEventListener("click", async () => {
     if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen();
+        await document.documentElement.requestFullscreen();
+
+        // force paysage mobile
+        if (screen.orientation && screen.orientation.lock) {
+            screen.orientation.lock("landscape").catch(() => {});
+        }
+
     } else {
         document.exitFullscreen();
     }
 });
+
+
+// 🎮 joystick fake (UI)
+const joystick = document.getElementById("joystick");
+
+joystick.addEventListener("touchmove", (e) => {
+    e.preventDefault();
+    // ici tu peux envoyer direction au serveur si tu veux plus tard
+});
+
+// boutons
+document.getElementById("left-click").onclick = () => {
+    console.log("click gauche");
+};
+
+document.getElementById("right-click").onclick = () => {
+    console.log("click droit");
+};
